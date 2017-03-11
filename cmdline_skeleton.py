@@ -39,8 +39,8 @@ def main():
 
     # Time format follows ISO 8601
     logging.basicConfig(level=logging.DEBUG, filename='test.log',
-                        datefmt='%Y-%m-%dT%H:%M:%S%z',
-                        format='%(asctime)s %(levelname)s: [func:%(funcName)s] %(message)s')
+            datefmt='%Y-%m-%dT%H:%M:%S%z',
+            format='%(asctime)s %(levelname)s: [func:%(funcName)s] %(message)s')
 
     fetch_url(args.url)
 
