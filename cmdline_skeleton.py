@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """ (insert tool description in docstrings format) """
 
-__author__ = "Nicolas Perreault"
+__author__ = "Nicolas P."
 __email__ = "name@acme.com"
 __version__ = "0.0.2"
 __status__ = "Alpha"
@@ -17,6 +18,7 @@ def fetch_url(url):
     request = urllib2.Request(url)
 
     try:
+        logging.info('Launching call to %s trying to fetch the page\' Doctype' % url)
         response = urllib2.urlopen(request)
         answer = response.read()
         doctype = answer[:answer.find('>')+1]
@@ -35,7 +37,10 @@ def main():
     parser.add_argument('--url', default='http://www.canoe.ca', help='Test URL')
     args = parser.parse_args()
 
-    logging.basicConfig(format='%(asctime)s %(levelname)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S %Z')
+    # Time format follows ISO 8601
+    logging.basicConfig(level=logging.DEBUG, filename='test.log',
+                        datefmt='%Y-%m-%dT%H:%M:%S%z',
+                        format='%(asctime)s %(levelname)s: [func:%(funcName)s] %(message)s')
 
     fetch_url(args.url)
 
